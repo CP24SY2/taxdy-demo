@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
@@ -35,7 +37,6 @@ class _ApipageState extends State<Apipage> {
 
   Future<String> _uploadSlip(File image) async {
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
-
     // ใส่ Header
     request.headers['x-authorization'] = apiKey;
 
@@ -53,19 +54,29 @@ class _ApipageState extends State<Apipage> {
     try {
       var response = await request.send();
       var responseBody = await http.Response.fromStream(response);
+      String transDate;
+      String transTime;
+      String transTimestamp;
+      String senderDisplayName;
+      String senderName;
+      String receiverDisplayName;
+      String receiverName;
+      String amount;
 
       if (response.statusCode == 200) {
         var data = jsonDecode(responseBody.body);
 
+        log('data: $data');
+
         // ดึงข้อมูลที่ต้องการจาก response
-        String transDate = data['data']['transDate'];
-        String transTime = data['data']['transTime'];
-        String transTimestamp = data['data']['transTimestamp'];
-        String senderDisplayName = data['data']['sender']['displayName'];
-        String senderName = data['data']['sender']['name'];
-        String receiverDisplayName = data['data']['receiver']['displayName'];
-        String receiverName = data['data']['receiver']['name'];
-        String amount = data['data']['amount'].toString();
+        transDate = data['data']['transDate'] ?? '';
+        transTime = data['data']['transTime'] ?? '';
+        transTimestamp = data['data']['transTimestamp'] ?? '';
+        senderDisplayName = data['data']['sender']['displayName'] ?? '';
+        senderName = data['data']['sender']['name'] ?? '';
+        receiverDisplayName = data['data']['receiver']['displayName'] ?? '';
+        receiverName = data['data']['receiver']['name'] ?? '';
+        amount = data['data']['amount'].toString() ?? '';
 
         // แสดงผลข้อมูลที่ต้องการ
         return '''
