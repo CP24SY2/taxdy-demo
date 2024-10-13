@@ -5,9 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(TaxdyApp());
 
-class MyApp extends StatelessWidget {
+class TaxdyApp extends StatelessWidget {
+  const TaxdyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
 }
 
 class SlipOkScreen extends StatefulWidget {
+  const SlipOkScreen({super.key});
+
   @override
   _SlipOkScreenState createState() => _SlipOkScreenState();
 }
