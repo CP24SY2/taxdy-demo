@@ -1,51 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:taxdy_demo/screens/scanner.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const SizedBox(height: 150),
-          const Text(
-            '5,000 BAHT',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 100),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          SizedBox(height: 0),
+          Column(
             children: [
-              OutlinedButton(
-                onPressed: () {
-                  // Add OCR
-                },
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Colors.red),
-                ),
-                child: const Text(
-                  'OCR',
-                  style: TextStyle(fontSize: 32, color: Colors.red),
+              Text(
+                'Tax-dy',
+                style: TextStyle(
+                  fontSize: 64,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              OutlinedButton(
-                onPressed: () {
-                  // Add API
-                },
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Colors.blueAccent),
-                ),
-                child: const Text(
-                  'API',
-                  style: TextStyle(fontSize: 32, color: Colors.blueAccent),
+              Text(
+                'Demo',
+                style: TextStyle(
+                  fontSize: 20,
                 ),
               ),
             ],
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xFF2C2C2C)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ScannerPage()),
+              );
+            },
+            child: Text(
+              'Scanner',
+              style: TextStyle(fontSize: 16),
+            ),
           ),
         ],
       ),

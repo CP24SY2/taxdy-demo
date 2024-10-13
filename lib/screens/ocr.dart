@@ -6,14 +6,14 @@ import 'dart:io';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 
-class OcrPage extends StatefulWidget {
-  const OcrPage({super.key});
+class Ocrpage extends StatefulWidget {
+  const Ocrpage({super.key});
 
   @override
-  State<OcrPage> createState() => _OcrPageState();
+  State<Ocrpage> createState() => _OcrpageState();
 }
 
-class _OcrPageState extends State<OcrPage> {
+class _OcrpageState extends State<Ocrpage> {
   File? selectedMedia;
 
   @override
