@@ -6,31 +6,33 @@ import 'dart:io';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Ocrpage extends StatefulWidget {
-  const Ocrpage({super.key});
+class OcrPage extends StatefulWidget {
+  const OcrPage({super.key});
 
   @override
-  State<Ocrpage> createState() => _OcrpageState();
+  State<OcrPage> createState() => _OcrPageState();
 }
 
-class _OcrpageState extends State<Ocrpage> {
+class _OcrPageState extends State<OcrPage> {
   File? selectedMedia;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('OCR', style: TextStyle(color: Color(0xFF757575))),
+        centerTitle: false,
+        titleSpacing: 0.0,
       ),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _imageView(),
-            _extractTextView(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _imageView(),
+              _extractTextView(),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -59,7 +61,7 @@ class _OcrpageState extends State<Ocrpage> {
     return Center(
       child: Image.file(
         selectedMedia!,
-        width: 200,
+        height: 400,
       ),
     );
   }
@@ -75,7 +77,7 @@ class _OcrpageState extends State<Ocrpage> {
         builder: (context, snapshot) {
           return Text(
             snapshot.data ?? "",
-            style: const TextStyle(fontSize: 50),
+            style: const TextStyle(fontSize: 20),
           );
         });
   }
@@ -85,9 +87,9 @@ class _OcrpageState extends State<Ocrpage> {
       script: TextRecognitionScript.latin,
     );
 
-    final InputImage inputimage = InputImage.fromFile(file);
+    final InputImage inputImage = InputImage.fromFile(file);
     final RecognizedText recognizedText =
-        await textRecognizer.processImage(inputimage);
+        await textRecognizer.processImage(inputImage);
     String text = recognizedText.text;
     LineSplitter ls = LineSplitter();
     List<String> textList = ls.convert(text);

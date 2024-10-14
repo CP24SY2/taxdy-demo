@@ -25,7 +25,7 @@ class ScannerPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Ocrpage()),
+                      MaterialPageRoute(builder: (context) => const OcrPage()),
                     );
                   },
                 ),
@@ -36,7 +36,7 @@ class ScannerPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Apipage()),
+                      MaterialPageRoute(builder: (context) => const ApiPage()),
                     );
                   },
                 ),
