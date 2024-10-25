@@ -28,7 +28,9 @@ class _ApiPageState extends State<ApiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('API (SlipOK)'),
+        title: Text('API', style: TextStyle(color: Color(0xFF757575))),
+        centerTitle: false,
+        titleSpacing: 0.0,
       ),
       body: Center(
         child: Column(
@@ -65,7 +67,6 @@ class _ApiPageState extends State<ApiPage> {
       });
     }
   }
-
 
   Future<String> _uploadSlip(File image) async {
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
@@ -141,20 +142,20 @@ class _ApiPageState extends State<ApiPage> {
         child: selectedMedia != null
             ? Image.file(selectedMedia!)
             : const Center(
-          child: Text(
-            "Select image",
-            style: TextStyle(color: Colors.grey),
-          ),
-        ),
+                child: Text(
+                  "Select image",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
       ),
     );
 
     // Delete "selectedMedia = null" if want to still click.
     return selectedMedia == null
         ? GestureDetector(
-      onTap: _pickImage,
-      child: imageContainer,
-    )
+            onTap: _pickImage,
+            child: imageContainer,
+          )
         : imageContainer;
   }
 }
